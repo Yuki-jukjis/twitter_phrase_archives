@@ -1,28 +1,4 @@
-﻿var db = 
-[
-  {
-    "id":1,
-    "phrase_title":"わたしはキキ",
-    "phrase":"わたしはキキ、こっちは･･･",
-    "description":"<b>魔女の宅急便</b>が元ネタ。",
-    "appearance":"",
-    "period":
-    {
-      "labels":["2018/1", "2018/2", "2018/3", "2018/4", "2018/5"],
-      "dataset":[1, 3, 2, 1, 4]
-    },
-    "links":[2]
-  },
-  {
-    "id":2,
-    "phrase_title":"ハリーポッター",
-    "phrase":"ハリーポッターと･･･の･･･",
-    "description":"ハリーポッターの日本語版副題が元ネタ",
-    "appearance":"",
-    "period":null,
-    "links":[]
-  }
-];
+﻿var db;
 
 $(document).ready(function(){
   //urlから言い回しidを読み込み
@@ -31,7 +7,9 @@ $(document).ready(function(){
   if(!id) {show_notfound(); return;}
   
   //jsonを読み込み
-  //$.getJSON("db.json" , function(data) {
+  $.getJSON("db.json" , function(loaded) {
+    db = loaded;
+
     //目的のオブジェクトを検索
     //オブジェクトを表示
     var data = search_db(id);
