@@ -6,7 +6,11 @@
     "phrase":"わたしはキキ、こっちは･･･",
     "description":"<b>魔女の宅急便</b>が元ネタ。",
     "appearance":"",
-    "period":"",
+    "period":
+    {
+      "labels":["2018/1", "2018/2", "2018/3", "2018/4", "2018/5"],
+      "dataset":[1, 3, 2, 1, 4]
+    },
     "links":[2]
   },
   {
@@ -15,7 +19,7 @@
     "phrase":"ハリーポッターと･･･の･･･",
     "description":"ハリーポッターの日本語版副題が元ネタ",
     "appearance":"",
-    "period":"",
+    "period":null,
     "links":[]
   }
 ];
@@ -57,6 +61,32 @@ function show_content(data) {
   else
     $("#appearance").html(data.description);
   
+  if(!data.period)
+    $("#period_block").hide();
+  else {
+    new Chart($("#chart"), {
+      type: 'line',
+      data: {
+        labels: data.period.labels,
+        datasets: [{
+          label: '',
+          backgroundColor: "rgba(14, 100, 200, 0.2)",
+          borderColor: "rgba(14, 100, 200, 1)",
+          data: data.period.dataset,
+          fill: true,
+          lineTension: 0,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          yAxes: [{
+            ticks: {min: 0}
+          }]
+        }
+      }
+    });
+  }
   if(data.links.length == 0)
     $("#links_block").hide();
   else
