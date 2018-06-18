@@ -15,7 +15,7 @@ $(document).ready(function(){
     var data = search_db(id);
     if(!data) {show_notfound(); return;}
     show_content(data);
-  //});
+  });
 });
 
 function search_db(id) {
